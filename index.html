@@ -58,6 +58,7 @@ img {
 .mainpg-section {
     width: 100%;
     height: 100vh;
+    min-height: 570px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,6 +69,22 @@ img {
     padding-top: 50px;
     box-sizing: border-box;
 }
+
+@media screen and (max-height: 580px) {
+    .mainpg-section{
+        scale: 0.8 !important;
+        top: -50px;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .mainpg-section{
+        scale: 0.6 !important;
+        top: -100px;
+    }
+}
+
+
 .mainpg-section img {
     height: 8vw;
     min-height: 80px;
