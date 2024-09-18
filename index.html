@@ -1030,6 +1030,8 @@ lite-youtube.lyt-activated > .lty-playbtn {
     }
 }
 @media screen and (max-width: 390px) {
+
+
     .pfolio-list li {
         max-width: 85vw;
         aspect-ratio: initial;
@@ -2261,8 +2263,48 @@ display: flex;
     }
 
 }
-</style>
 
+.tlacitkaposunfeaturespf{
+    margin-top: 10px;
+}
+
+.tlacitkazarovnanipf{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.posunvpravo2{
+    cursor: pointer !important;
+    transition: opacity 0.3s;
+    opacity: 0.6;
+}
+
+.posunvpravo2:hover{
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+
+.posunvpravo2 span{
+    font-size: 24px;
+    color: black;
+}
+
+@media screen and (max-width: 390px) {
+    .tlacitkaposunfeaturespf{
+        margin-top: initial !important;
+    }
+
+    .tlacitkazarovnanipf{
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    .posunvpravo2 span{
+        font-size: 21px;
+    }
+}
+</style>
 
 
     <script>
@@ -2382,7 +2424,8 @@ display: flex;
                 Po přihlášení odběru získáš přístup k <strong>lekci ZDARMA.</strong-->
 
                 Přihlaste se k odběru novinek, získejte ty nejlepší trading tipy a<br>
-                zjistěte, jestli je tento <strong>exkluzivní program</strong> právě pro vás.
+                zjistěte, jestli je tento <strong>exkluzivní program</strong> právě pro vás. <br>
+                <span style="font-size: 14px;">Již odebíráte? Zadejte údaje ještě jednou pro zobrazení obsahu.</span>
 
             </p>
         </div>
@@ -2632,6 +2675,11 @@ display: flex;
         </ul>
     </div>
     <div class="tlacitkaposunfeaturespf">
+        <div id="backsipka2" class="posunvpravo2">
+            <span class="material-symbols-outlined">
+            arrow_back_ios_new
+            </span>
+        </div>
         <div class="tlacitkazarovnanipf">
             <ul class="dots">
                 <li></li>
@@ -2643,8 +2691,15 @@ display: flex;
                 <li></li>
             </ul>
         </div>
+        <div id="forwardsipka2" class="posunvpravo2">
+            <span class="material-symbols-outlined">
+                arrow_forward_ios
+            </span>
+        </div>
     </div>
 </section>
+
+
 
 
     <div class="grhead grhead2">
@@ -2787,6 +2842,8 @@ document.addEventListener("DOMContentLoaded", function () {
             n.scrollLeft -= n.clientWidth;
         });
 });
+
+
 
  
 </script>
@@ -3051,6 +3108,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const btn = document.querySelectorAll(".playbtnli");
         const btndolni = document.querySelectorAll(".playbtnlidolni");
+
+        const nextButton = document.getElementById('forwardsipka2');
+        const prevButton = document.getElementById('backsipka2');
+
+        let currentIndex = 0;  // Uloží aktuální pozici v galerii
     
         function updateVisibility() {
             const l = t.getBoundingClientRect();
@@ -3101,7 +3163,20 @@ document.addEventListener("DOMContentLoaded", function () {
             updateVisibility();
             stopSlideInterval();  // Zastaví slideInterval při scrollování galerie
         });
-    
+
+                // Přidáme funkčnost pro šipky
+                nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % e.length;  // Posuneme doprava
+            scrollToSlide(currentIndex);
+            setActiveDot(currentIndex);
+        });
+
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + e.length) % e.length;  // Posuneme doleva
+            scrollToSlide(currentIndex);
+            setActiveDot(currentIndex);
+        });
+
     
         /*
     
@@ -3115,7 +3190,9 @@ document.addEventListener("DOMContentLoaded", function () {
         */
         updateVisibility();
     }
+
     
+
     
     </script>
     
